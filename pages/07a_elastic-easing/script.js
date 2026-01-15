@@ -1,3 +1,5 @@
+import gsap from "gsap";
+
 // Select the "Repeat" button
 const repeat = document.querySelector(".repeat");
 
@@ -23,11 +25,11 @@ const maxValue = Math.max(...data.map((d) => d.value));
 
 // Render the bar chart
 function renderChart() {
-  data.forEach((item, i) => {
+  data.forEach((item, index) => {
     // Create a wrapper for bar + label
     const wrapper = document.createElement("div");
     wrapper.className = "bar-wrapper";
-    wrapper.style.left = `${i * (barWidth + spacing) + 50}px`;
+    wrapper.style.left = `${index * (barWidth + spacing) + 50}px`;
     wrapper.style.width = `${barWidth}px`;
 
     // Create the bar itself
@@ -46,7 +48,14 @@ function renderChart() {
     wrapper.appendChild(label);
     chart.appendChild(wrapper);
 
-    // 👇 This is where GSAP animation will go later
+    // GSAP Animation
+
+    gsap.to(bar, {
+      scaleY: 1,
+      duration: 2,
+      ease: "elastic.out(1,1.25)",
+      delay: index*0.15,
+    })
   });
 }
 
