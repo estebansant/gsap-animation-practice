@@ -1,7 +1,18 @@
 import gsap from "gsap";
 
-gsap,from(".card-1", {
+const repeat = document.querySelector(".repeat");
+
+const animation = gsap.from(".card", {
     y:60,
     opacity:0,
-    
+    scale: 0.95,
+    duration: 0.6,
+    stagger: 0.25,
+    delay: 0.2,
+    ease: "power4.out",
+});
+
+
+repeat.addEventListener("click", () => {
+    animation.restart()
 })
